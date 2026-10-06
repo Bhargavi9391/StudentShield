@@ -3,11 +3,14 @@ const { checkFingerprint } = require("./fingerprintService");
 
 const verifyOpportunity = async (opportunityData) => {
     try {
-        const response = await axios.post(
-            "http://localhost:8080/api/verification/check",
-            opportunityData
-        );
+        const verificationServiceUrl =
+    process.env.VERIFICATION_SERVICE_URL ||
+    "http://localhost:8080/api/verification/check";
 
+const response = await axios.post(
+    verificationServiceUrl,
+    opportunityData
+);
         const verificationResult = response.data;
 
         const fingerprintResult = await checkFingerprint({

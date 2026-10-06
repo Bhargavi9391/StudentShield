@@ -1,6 +1,8 @@
 
+
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "./api";
 import Login from "./Login";
 import Register from "./Register";
 import AdminDashboard from "./AdminDashboard";
@@ -104,7 +106,7 @@ function App() {
             setLoading(true);
 
             const response = await axios.get(
-                "http://localhost:5000/api/opportunities"
+                `${API_URL}/api/opportunities`
             );
 
             const opportunitiesWithReports =
@@ -113,7 +115,7 @@ function App() {
                         try {
                             const reportResponse =
                                 await axios.get(
-                                    `http://localhost:5000/api/reports/${opportunity._id}/summary`
+                                    `${API_URL}/api/reports/${opportunity._id}/summary`
                                 );
 
                             return {
@@ -155,7 +157,7 @@ function App() {
             }
 
             const response = await axios.get(
-                "http://localhost:5000/api/opportunities/saved",
+                `${API_URL}/api/opportunities/saved`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -248,7 +250,7 @@ function App() {
             }
 
             const response = await axios.post(
-                "http://localhost:5000/api/opportunities/verify",
+                    `${API_URL}/api/opportunities/verify`,
                 {
                     ...verifyForm,
                     registrationFee: Number(
@@ -297,7 +299,7 @@ function App() {
             }
 
             const response = await axios.get(
-                "http://localhost:5000/api/opportunities/verification-history",
+                `${API_URL}/api/opportunities/verification-history`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -342,7 +344,7 @@ function App() {
             }
 
             const response = await axios.get(
-                `http://localhost:5000/api/opportunities/verification-history/${reportId}`,
+                `${API_URL}/api/opportunities/verification-history/${reportId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -385,7 +387,7 @@ function App() {
             }
 
             const response = await axios.post(
-                `http://localhost:5000/api/opportunities/${opportunityId}/save`,
+                `${API_URL}/api/opportunities/${opportunityId}/save`,
                 {},
                 {
                     headers: {
@@ -448,7 +450,7 @@ function App() {
             }
 
             const response = await axios.post(
-                `http://localhost:5000/api/reports/${opportunityId}`,
+                `${API_URL}/api/reports/${opportunityId}`,
                 {
                     reason,
                     description:

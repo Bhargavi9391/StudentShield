@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import API_URL from "./api";
 
 function Register({ onLogin }) {
     const [name, setName] = useState("");
@@ -19,7 +20,7 @@ function Register({ onLogin }) {
             setLoading(true);
 
             await axios.post(
-                "http://localhost:5000/api/auth/register",
+                `${API_URL}/api/auth/register`,
                 {
                     name,
                     email,

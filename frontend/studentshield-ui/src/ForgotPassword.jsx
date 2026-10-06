@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import API_URL from "./api";
 
 
 function ForgotPassword({ onBack, onReset  }) {
@@ -18,7 +19,7 @@ function ForgotPassword({ onBack, onReset  }) {
             setLoading(true);
 
             const response = await axios.post(
-                "http://localhost:5000/api/auth/forgot-password",
+                `${API_URL}/api/auth/forgot-password`,
                 {
                     email
                 }

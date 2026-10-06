@@ -196,31 +196,46 @@ public class RiskRules {
             );
 }
     private static boolean containsPaymentClaim(
-            String details) {
+        String details) {
 
-        return details.contains(
-                "upfront payment"
-        )
-                || details.contains(
-                        "pay before interview"
-                )
-                || details.contains(
-                        "pay before joining"
-                )
-                || details.contains(
-                        "verification fee"
-                )
-                || details.contains(
-                        "registration fee"
-                )
-                || details.contains(
-                        "placement fee"
-                )
-                || details.contains(
-                        "pay to get selected"
-                );
+    if (details.contains("no registration fee")
+            || details.contains("no registration fees")
+            || details.contains("no application fee")
+            || details.contains("no application fees")
+            || details.contains("no upfront payment")
+            || details.contains("no upfront payments")
+            || details.contains("without registration fee")
+            || details.contains("without registration fees")
+            || details.contains("without application fee")
+            || details.contains("without application fees")
+            || details.contains("without upfront payment")
+            || details.contains("without upfront payments")) {
+
+        return false;
     }
 
+    return details.contains(
+            "upfront payment"
+    )
+            || details.contains(
+                    "pay before interview"
+            )
+            || details.contains(
+                    "pay before joining"
+            )
+            || details.contains(
+                    "verification fee"
+            )
+            || details.contains(
+                    "registration fee"
+            )
+            || details.contains(
+                    "placement fee"
+            )
+            || details.contains(
+                    "pay to get selected"
+            );
+}
     private static boolean sameDomain(
             String officialDomain,
             String applicationDomain) {

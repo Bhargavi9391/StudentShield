@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import API_URL from "./api";
 
 function ResetPassword({ token, onLogin }) {
     const [password, setPassword] = useState("");
@@ -23,7 +24,7 @@ function ResetPassword({ token, onLogin }) {
             setLoading(true);
 
             await axios.post(
-                `http://localhost:5000/api/auth/reset-password/${token}`,
+                `${API_URL}/api/auth/reset-password/${token}`,
                 {
                     password
                 }

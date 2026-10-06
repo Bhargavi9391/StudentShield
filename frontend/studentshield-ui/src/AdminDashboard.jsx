@@ -1,5 +1,6 @@
     import { useEffect,useState } from "react";
     import axios from "axios";
+    import API_URL from "./api";
 
     function AdminDashboard({ user, onBack }) {
         const [form, setForm] = useState({
@@ -28,7 +29,7 @@
             setOpportunitiesLoading(true);
 
             const response = await axios.get(
-                "http://localhost:5000/api/opportunities"
+               `${API_URL}/api/opportunities`
             );
 
             setOpportunities(response.data);
@@ -48,7 +49,7 @@
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "http://localhost:5000/api/reports/admin/all",
+                `${API_URL}/api/reports/admin/all`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -79,7 +80,7 @@
             const token = localStorage.getItem("token");
 
             const response = await axios.delete(
-                `http://localhost:5000/api/opportunities/${opportunityId}`,
+                `${API_URL}/api/opportunities/${opportunityId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -124,7 +125,7 @@
             const token = localStorage.getItem("token");
 
             const response = await axios.patch(
-                `http://localhost:5000/api/reports/admin/${reportId}/status`,
+                `${API_URL}/api/reports/admin/${reportId}/status`,
                 {
                     status
                 },
@@ -181,7 +182,7 @@
 
         if (editingOpportunity) {
             response = await axios.put(
-                `http://localhost:5000/api/opportunities/${editingOpportunity._id}`,
+                `${API_URL}/api/opportunities/${editingOpportunity._id}`,
                 {
                     ...form,
                     registrationFee:
@@ -199,7 +200,7 @@
             setEditingOpportunity(null);
         } else {
             response = await axios.post(
-                "http://localhost:5000/api/opportunities",
+                `${API_URL}/api/opportunities`,
                 {
                     ...form,
                     registrationFee:

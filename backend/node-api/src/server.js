@@ -10,7 +10,16 @@ const opportunityRoutes = require("./routes/opportunityRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(
+    cors({
+        origin: [
+            "http://localhost:5173",
+            "https://student-shield-wid9lhj9x-bhargavi9391s-projects.vercel.app"
+        ],
+        credentials: true
+    })
+);
+
 app.use(express.json());
 
 connectDB();
